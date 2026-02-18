@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Mohammed Al-Habib | Research Portfolio</title>
+  <meta name="description" content="Computer Vision & Few-Shot Learning Researcher — Publications, Research, Teaching, Service." />
+
+  <!-- Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (no build) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Arial', 'sans-serif'] },
+          keyframes: {
+            floaty: {
+              '0%, 100%': { transform: 'translateY(0px) translateX(0px)' },
+              '50%': { transform: 'translateY(-14px) translateX(6px)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+              '100%': { backgroundPosition: '0% 50%' },
+            },
+            pop: {
+              '0%': { transform: 'scale(.98)', opacity: '.0' },
+              '100%': { transform: 'scale(1)', opacity: '1' },
+            },
+          },
+          animation: {
+            floaty: 'floaty 6s ease-in-out infinite',
+            shimmer: 'shimmer 10s ease-in-out infinite',
+            pop: 'pop .45s ease-out both',
+          },
+          boxShadow: {
+            soft: '0 18px 55px rgba(16,24,40,.10)',
+            softDark: '0 18px 60px rgba(0,0,0,.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Reveal-on-scroll base */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .75s cubic-bezier(.2,.8,.2,1), transform .75s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* Cursor glow (subtle premium effect) */
+    .cursor-glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 30%), rgba(11,87,208,.12), transparent 60%);
+      transition: background .2s ease;
+    }
+    .dark .cursor-glow {
+      background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 30%), rgba(125,180,255,.10), transparent 60%);
+    }
+
+/* ===== Avatar upgrade (bigger + nicer) ===== */
+.avatar{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,.85);
+  box-shadow: 0 14px 34px rgba(16,24,40,.18);
+}
+html[data-theme="dark"] .avatar{
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 14px 34px rgba(0,0,0,.45);
+}
+
+.avatar-wrap{
+  width:60px;height:60px;
+  border-radius:20px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  padding:3px;
+  box-shadow: var(--shadow2);
+  display:flex;align-items:center;justify-content:center;
+}
+.avatar-wrap img{border-radius:17px}
+</style>
+
+</head>
+
+<body class="font-sans bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Cursor glow layer -->
+  <div class="cursor-glow"></div>
+
+  <!-- Scroll progress -->
+  <div class="fixed top-0 left-0 h-[3px] w-full z-50">
+    <div id="progress" class="h-full w-0 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500"></div>
+  </div>
+
+  <!-- NAV -->
+  <header id="topbar" class="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-950/70 border-b border-slate-200/70 dark:border-slate-800/70">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between py-3">
+        <a href="#home" class="group flex items-center gap-3">
+        <div class="avatar-wrap">
+  <img class="avatar" src="avatar.jpg" alt="Mohammed Al-Habib">
+</div>
+
+          <div class="leading-tight">
+            <div class="text-[11px] tracking-[0.22em] font-extrabold text-slate-800 dark:text-slate-100">MOHAMMED AL-HABIB</div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition">
+              Computer Vision • Few-Shot Learning
+            </div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+          <a class="px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition" href="#research">Research</a>
+          <a class="px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition" href="#publications">Publications</a>
+          <a class="px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition" href="#teaching">Teaching</a>
+          <a class="px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition" href="#service">Service</a>
+          <a class="px-3 py-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-900 transition" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button id="themeBtn" class="px-3 py-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition font-bold text-sm">
+            <span class="inline dark:hidden">🌙</span>
+            <span class="hidden dark:inline">☀️</span>
+          </button>
+          <button id="menuBtn" class="md:hidden px-3 py-2 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition font-bold text-sm">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="drawer" class="hidden md:hidden">
+      <div class="fixed inset-0 bg-black/40"></div>
+      <div class="fixed right-0 top-0 h-full w-[84vw] max-w-[360px] bg-white dark:bg-slate-950 border-l border-slate-200 dark:border-slate-800 shadow-soft dark:shadow-softDark p-4 animate-pop">
+        <div class="flex items-center justify-between mb-3">
+          <div class="font-extrabold">Menu</div>
+          <button id="closeBtn" class="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800">✕</button>
+        </div>
+        <div class="grid gap-2">
+          <a class="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold" href="#research">Research</a>
+          <a class="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold" href="#publications">Publications</a>
+          <a class="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold" href="#teaching">Teaching</a>
+          <a class="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold" href="#service">Service</a>
+          <a class="px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold" href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="relative z-10">
+    <section class="max-w-6xl mx-auto px-4 pt-10 pb-8">
+      <div class="grid lg:grid-cols-12 gap-6 items-start">
+
+        <!-- left -->
+        <div class="lg:col-span-7 reveal">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-xs font-extrabold text-slate-600 dark:text-slate-300">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            Open to: Postdoc • Research Scientist • Faculty-track
+          </div>
+
+          <h1 class="mt-4 text-4xl sm:text-5xl font-black tracking-tight leading-[1.05]">
+            Data-efficient learning for real-world vision:
+            <span class="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 bg-[length:220%_220%] animate-shimmer bg-clip-text text-transparent">
+              few-shot, semi-supervised, and robust generalization
+            </span>
+          </h1>
+
+          <p class="mt-4 text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+            I work on few-shot image classification, semi-supervised learning, graph-based representation learning, vision transformers,
+            and medical imaging applications—building methods that generalize under limited labels and domain shift.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-2">
+            <a class="px-4 py-2.5 rounded-full font-extrabold text-white bg-gradient-to-r from-blue-700 to-indigo-600 hover:brightness-110 transition shadow-soft dark:shadow-softDark"
+               href="#publications">Explore Publications</a>
+            <a class="px-4 py-2.5 rounded-full font-extrabold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition"
+               href="https://scholar.google.com/citations?user=3BG4EtUAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+            <a class="px-4 py-2.5 rounded-full font-extrabold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition"
+               href="https://www.linkedin.com/in/mohammed-alhabib-0b9856132/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="px-4 py-2.5 rounded-full font-extrabold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition"
+               href="https://orcid.org/0000-0003-3651-4954" target="_blank" rel="noopener">ORCID</a>
+            <a class="px-4 py-2.5 rounded-full font-extrabold border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 transition"
+               href="assets/cv.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+
+          <div class="mt-6 grid sm:grid-cols-3 gap-3">
+            <div class="p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 shadow-soft dark:shadow-softDark">
+              <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">Location</div>
+              <div class="mt-1 font-extrabold">Changsha, China</div>
+            </div>
+            <div class="p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/60 shadow-soft dark:shadow-softDark">
+              <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">Email</div>
+              <div class="mt-1 font-extrabold break-all">ibnalhabib@gmail.com</div>
+            </div>
+          
+          </div>
+        </div>
+
+        <!-- right panel -->
+        <div class="lg:col-span-5 reveal">
+          <div class="relative overflow-hidden rounded-[28px] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 shadow-soft dark:shadow-softDark">
+            <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-gradient-to-br from-blue-600/25 to-cyan-500/10 blur-2xl animate-floaty"></div>
+            <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-gradient-to-br from-indigo-600/20 to-blue-500/10 blur-2xl animate-floaty" style="animation-delay:.8s"></div>
+
+            <div class="relative p-6">
+              <h2 class="text-lg font-black tracking-tight">Core Focus</h2>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Few-shot Learning</span>
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Vision Transformers</span>
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Graph Neural Nets</span>
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Semi-supervised</span>
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Medical Imaging</span>
+                <span class="px-3 py-1.5 rounded-full text-xs font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">Robust Generalization</span>
+              </div>
+
+              <div class="mt-5 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40">
+                <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">Quick Bio</div>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+                  8+ years in CV research and 10+ years building production systems. I design learning frameworks that remain stable when labels are scarce.
+                </p>
+              </div>
+
+              <div class="mt-4 grid grid-cols-2 gap-3">
+                <a class="group p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:-translate-y-1 transition shadow-soft dark:shadow-softDark"
+                   href="#publications">
+                  <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">Publications</div>
+                  <div id="pubCount" class="mt-1 text-2xl font-black">—</div>
+                  <div class="mt-1 text-xs font-bold text-blue-700 dark:text-blue-300">See list →</div>
+                </a>
+                <a class="group p-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:-translate-y-1 transition shadow-soft dark:shadow-softDark"
+                   href="#service">
+                  <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">Service</div>
+                  <div class="mt-1 text-2xl font-black">Reviewer</div>
+                  <div class="mt-1 text-xs font-bold text-blue-700 dark:text-blue-300">Journals & Conf →</div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section id="research" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="flex items-end justify-between gap-4 reveal">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Research</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Topics I actively work on and the type of problems I like to solve.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-4">
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <h3 class="text-lg font-black">Label-efficient recognition</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Few-shot & semi-supervised learning pipelines that reduce label cost and remain reliable under distribution shift.
+          </p>
+        </div>
+
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <h3 class="text-lg font-black">Transformers + Graph reasoning</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Token refinement, uncertainty-aware selection, and graph propagation to exploit intra-/inter-class structure.
+          </p>
+        </div>
+
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <h3 class="text-lg font-black">Medical imaging applications</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Data-scarce clinical settings: robust models, explainability, and safe evaluation protocols.
+          </p>
+        </div>
+
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <h3 class="text-lg font-black">Practical engineering</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Strong software background for building reproducible experiments and deployable research prototypes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Publications</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <input id="q" type="text" placeholder="Search title / venue / year / keyword…"
+                 class="w-[min(420px,86vw)] px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 outline-none focus:ring-4 ring-blue-200/50 dark:ring-blue-500/20 transition font-semibold" />
+          <select id="sort"
+                  class="px-4 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 font-extrabold">
+            <option value="desc">Newest</option>
+            <option value="asc">Oldest</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="pubGrid" class="mt-6 grid lg:grid-cols-2 gap-4"></div>
+      <div id="empty" class="hidden mt-6 text-center text-slate-600 dark:text-slate-300 font-semibold">No results.</div>
+    </section>
+
+    <!-- Teaching -->
+    <section id="teaching" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="reveal">
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Teaching</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">Selected teaching roles.</p>
+      </div>
+
+      <div class="mt-6 reveal rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark overflow-hidden">
+        <div class="divide-y divide-slate-200 dark:divide-slate-800">
+          <div class="p-5 grid md:grid-cols-12 gap-3">
+            <div class="md:col-span-3 text-sm font-extrabold text-slate-500 dark:text-slate-400">Sep 2021 – 2023</div>
+            <div class="md:col-span-9">
+              <div class="font-black">Instructor (Part-time), Yemen University, Sana’a</div>
+              <div class="mt-1 text-slate-600 dark:text-slate-300 font-medium">Web Programming (PHP/HTML/CSS/JS), E-Commerce, Computer Graphics</div>
+            </div>
+          </div>
+          <div class="p-5 grid md:grid-cols-12 gap-3">
+            <div class="md:col-span-3 text-sm font-extrabold text-slate-500 dark:text-slate-400">Dec 2021 – Feb 2022</div>
+            <div class="md:col-span-9">
+              <div class="font-black">Instructor, Sana’a University</div>
+              <div class="mt-1 text-slate-600 dark:text-slate-300 font-medium">C# MVC and ASP.NET Core</div>
+            </div>
+          </div>
+          <div class="p-5 grid md:grid-cols-12 gap-3">
+            <div class="md:col-span-3 text-sm font-extrabold text-slate-500 dark:text-slate-400">Jan 2022 – Mar 2022</div>
+            <div class="md:col-span-9">
+              <div class="font-black">Instructor, General Telecommunication Institute (GTI), Sana’a</div>
+              <div class="mt-1 text-slate-600 dark:text-slate-300 font-medium">Web Programming and Design</div>
+            </div>
+          </div>
+          <div class="p-5 grid md:grid-cols-12 gap-3">
+            <div class="md:col-span-3 text-sm font-extrabold text-slate-500 dark:text-slate-400">Sep 2015 – Jul 2016</div>
+            <div class="md:col-span-9">
+              <div class="font-black">Instructor, International College for Health and Technical Sciences, Sana’a</div>
+              <div class="mt-1 text-slate-600 dark:text-slate-300 font-medium">VB.NET, Object-Oriented Programming (OOP)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service -->
+    <section id="service" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="reveal">
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Service</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">Editorial & peer-review service.</p>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-4">
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <div class="font-black">Reviewer</div>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            IEEE Transactions on Multimedia; Applied Soft Computing; Applied Intelligence; Digital Signal Processing; IEEE Access; Scientific Reports; IJCNN (2025–2026).
+          </p>
+        </div>
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition">
+          <div class="font-black">Professional strengths</div>
+          <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Reproducible experimentation, careful evaluation, and clear scientific writing—aligned with high-standard venues.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 py-10">
+      <div class="reveal">
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Contact</h2>
+        <p class="mt-2 text-slate-600 dark:text-slate-300 font-medium">Let’s collaborate or discuss opportunities.</p>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-4">
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark">
+          <div class="text-sm font-extrabold text-slate-500 dark:text-slate-400">Email</div>
+          <div class="mt-1 font-black text-lg break-all">ibnalhabib@gmail.com</div>
+          <div class="mt-4 flex gap-2 flex-wrap">
+            <a class="px-4 py-2 rounded-full font-extrabold bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:-translate-y-1 transition"
+               href="mailto:ibnalhabib@gmail.com">Send email</a>
+            <a class="px-4 py-2 rounded-full font-extrabold bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:-translate-y-1 transition"
+               href="https://scholar.google.com/citations?user=3BG4EtUAAAAJ&hl=en" target="_blank" rel="noopener">Scholar</a>
+            <a class="px-4 py-2 rounded-full font-extrabold bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:-translate-y-1 transition"
+               href="https://www.linkedin.com/in/mohammed-alhabib-0b9856132/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="reveal p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark">
+          <div class="text-sm font-extrabold text-slate-500 dark:text-slate-400">Details</div>
+          <div class="mt-2 text-slate-600 dark:text-slate-300 font-medium">
+            Location: Changsha, China<br/>
+          
+            ORCID: 0000-0003-3651-4954
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-10 border-t border-slate-200 dark:border-slate-800 py-10 text-center text-slate-500 dark:text-slate-400 font-semibold">
+      © <span id="year"></span> Mohammed Al-Habib 
+    </footer>
+  </main>
+
+  <script>
+    // ---------- Theme ----------
+    const root = document.documentElement;
+    const saved = localStorage.getItem("theme");
+    if (saved) root.classList.toggle("dark", saved === "dark");
+
+    document.getElementById("themeBtn").addEventListener("click", () => {
+      root.classList.toggle("dark");
+      localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
+    });
+
+    // ---------- Drawer ----------
+    const drawer = document.getElementById("drawer");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeBtn = document.getElementById("closeBtn");
+    function openDrawer(){ drawer.classList.remove("hidden"); }
+    function closeDrawer(){ drawer.classList.add("hidden"); }
+    menuBtn?.addEventListener("click", openDrawer);
+    closeBtn?.addEventListener("click", closeDrawer);
+    drawer?.addEventListener("click", (e) => { if (e.target === drawer.firstElementChild) closeDrawer(); });
+    drawer.querySelectorAll("a").forEach(a => a.addEventListener("click", closeDrawer));
+
+    // ---------- Year ----------
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ---------- Scroll progress ----------
+    const progress = document.getElementById("progress");
+    window.addEventListener("scroll", () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      progress.style.width = p + "%";
+    });
+
+    // ---------- Cursor glow ----------
+    window.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      document.body.style.setProperty("--mx", x + "%");
+      document.body.style.setProperty("--my", y + "%");
+    });
+
+    // ---------- Reveal on scroll ----------
+    const reveals = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) {
+        if (en.isIntersecting) en.target.classList.add("in");
+      }
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+
+    // ---------- Publications data (single stream, no categories) ----------
+    const pubs = [
+      {
+        year: 2026,
+        title: "Semi-supervised Few-shot Learning via Ensemble-based Adaptive Clustering-aware Pseudo-labeling",
+        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Mounir Abdelaziz, et al.",
+        venue: "Applied Soft Computing",
+        doi: "10.1016/j.asoc.2025.114225"
+      },
+      {
+        year: 2026,
+        title: "Cascading size-dependent deep propagation (CADP): Addressing over-smoothing in graph few-shot dermatology classification",
+        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Ahmed Alasri, et al.",
+        venue: "Neural Networks",
+        doi: "10.1016/j.neunet.2025.108154"
+      },
+      {
+        year: 2026,
+        title: "SEN-GAT: Synergistic Edge-Node graph attention networks for few-shot skin disease diagnosis",
+        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Ahmed Alasri, et al.",
+        venue: "Digital Signal Processing",
+        doi: "10.1016/j.dsp.2025.105497"
+      },
+    ,
+      {
+        year: 2025,
+        title: "GCDPL-Net: graph-based co-attention discriminative prototype learning networks for few-shot classification",
+        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Majjed Alqatf, et al.",
+        venue: "International Journal of Machine Learning and Cybernetics",
+        doi: "10.1007/s13042-025-02730-w"
+      },
+      {
+        year: 2025,
+        title: "BATR-FST: Bi-Level Adaptive Token Refinement for Few-Shot Transformers",
+        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman",
+        venue: "IJCNN (International Joint Conference on Neural Networks)",
+        doi: "10.1109/IJCNN64981.2025.11227827"
+      },
+      {
+        year: 2025,
+        title: "Deep learning-based image processing framework for efficient surface litter detection in Computer Vision applications",
+        authors: "Ifza Shad, Zuping Zhang, Muhammad Asim, Mohammed Al-Habib, Ahmed A. Abd El-Latif, et al.",
+        venue: "Journal of Radiation Research and Applied Sciences",
+        doi: "10.1016/j.jrras.2025.101534"
+      },
+      {
+        year: 2025,
+        title: "FEGGNN: Feature-Enhanced Gated Graph Neural Network for robust few-shot skin disease classification",
+        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Raeed Alsabri, et al.",
+        venue: "Computers in Biology and Medicine",
+        doi: "10.1016/j.compbiomed.2025.109902"
+      },
+      {
+        year: 2024,
+        title: "RVAIC: Refined visual attention for improved image captioning",
+        authors: "Majjed Al-Qatf, Ammar Hawbani, Xingfu Wang, Mohammed Al-Habib, Edward Curry",
+        venue: "Journal of Intelligent & Fuzzy Systems",
+        doi: "10.3233/jifs-233004"
+      },
+      {
+        year: 2024,
+        title: "Posture Detection of Heart Disease Using Multi-Head Attention Vision Hybrid (MHAVH) Model",
+        authors: "Hina Naz, Zuping Zhang, Mohammed Al-Habib, Zaid Ali Khan, et al.",
+        venue: "Computers, Materials & Continua",
+        doi: "10.32604/cmc.2024.049186"
+      },
+      {
+        year: 2019,
+        title: "A Novel Integrated Approach for Companion Vehicle Discovery Based on Frequent Itemset Mining on Spark",
+        authors: "Abdulrahman Al-Badwi, Zhe Long, Zuping Zhang, Mohammed Al-Habib, Kamal Al-Sabahi",
+        venue: "Arabian Journal for Science and Engineering",
+        doi: "10.1007/s13369-019-03831-9"
+      },
+      {
+        year: 2019,
+        title: "Cooperative Hierarchical Framework for Group Activity Recognition",
+        authors: "Mohammed Al-Habib, Dongjun Huang, Majjed Al-Qatf, Kamal Al-Sabahi",
+        venue: "ICSCA (Conference)",
+        doi: "10.1145/3316615.3316722"
+      },
+      {
+        year: 2018,
+        title: "Deep Learning Approach Combining Sparse Autoencoder With SVM for Network Intrusion Detection",
+        authors: "Majjed Al-Qatf, Lasheng Yu, Mohammed Al-Habib, Kamal Al-Sabahi",
+        venue: "IEEE Access",
+        doi: "10.1109/ACCESS.2018.2869577"
+      }
+    ];
+
+    const pubGrid = document.getElementById("pubGrid");
+    const empty = document.getElementById("empty");
+    const q = document.getElementById("q");
+    const sort = document.getElementById("sort");
+    document.getElementById("pubCount").textContent = pubs.length;
+
+    function card(p){
+      const doiBtn = p.doi
+        ? `<a class="px-3 py-2 rounded-2xl text-sm font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:-translate-y-1 transition"
+              target="_blank" rel="noopener" href="https://doi.org/${p.doi}">DOI</a>`
+        : `<span class="px-3 py-2 rounded-2xl text-sm font-extrabold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400">Accepted</span>`;
+
+      return `
+        <article class="reveal group p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition relative overflow-hidden">
+          <div class="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-br from-blue-600/15 to-cyan-500/10 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+          <div class="flex items-start justify-between gap-4">
+            <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400">${p.year}</div>
+            <div class="text-xs font-extrabold text-slate-500 dark:text-slate-400 text-right">${p.venue}</div>
+          </div>
+
+          <h3 class="mt-2 text-lg font-black leading-snug tracking-tight">
+            ${p.title}
+          </h3>
+
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
+            ${p.authors}
+          </p>
+
+          <div class="mt-4 flex gap-2 flex-wrap">
+            ${doiBtn}
+          </div>
+        </article>
+      `;
+    }
+
+    function render(){
+      const term = (q.value || "").toLowerCase().trim();
+      const dir = sort.value;
+
+      const filtered = pubs.filter(p => {
+        const hay = `${p.year} ${p.title} ${p.authors} ${p.venue} ${p.doi}`.toLowerCase();
+        return !term || hay.includes(term);
+      });
+
+      filtered.sort((a,b) => dir === "desc" ? (b.year - a.year) : (a.year - b.year));
+
+      pubGrid.innerHTML = filtered.map(card).join("");
+      empty.classList.toggle("hidden", filtered.length !== 0);
+
+      // re-observe newly rendered cards for reveal animation
+      document.querySelectorAll("#pubGrid .reveal").forEach(el => io.observe(el));
+    }
+
+    q.addEventListener("input", render);
+    sort.addEventListener("change", render);
+    render();
+  </script>
+</body>
+</html>
