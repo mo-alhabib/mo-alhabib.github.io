@@ -468,94 +468,155 @@ html[data-theme="dark"] .avatar{
     reveals.forEach(el => io.observe(el));
 
     // ---------- Publications data (single stream, no categories) ----------
-    const pubs = [
-      {
-        year: 2026,
-        title: "Semi-supervised Few-shot Learning via Ensemble-based Adaptive Clustering-aware Pseudo-labeling",
-        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Mounir Abdelaziz, et al.",
-        venue: "Applied Soft Computing",
-        doi: "10.1016/j.asoc.2025.114225"
-      },
-      {
-        year: 2026,
-        title: "Cascading size-dependent deep propagation (CADP): Addressing over-smoothing in graph few-shot dermatology classification",
-        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Ahmed Alasri, et al.",
-        venue: "Neural Networks",
-        doi: "10.1016/j.neunet.2025.108154"
-      },
-      {
-        year: 2026,
-        title: "SEN-GAT: Synergistic Edge-Node graph attention networks for few-shot skin disease diagnosis",
-        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Ahmed Alasri, et al.",
-        venue: "Digital Signal Processing",
-        doi: "10.1016/j.dsp.2025.105497"
-      },
-    ,
-      {
-        year: 2025,
-        title: "GCDPL-Net: graph-based co-attention discriminative prototype learning networks for few-shot classification",
-        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Majjed Alqatf, et al.",
-        venue: "International Journal of Machine Learning and Cybernetics",
-        doi: "10.1007/s13042-025-02730-w"
-      },
-      {
-        year: 2025,
-        title: "BATR-FST: Bi-Level Adaptive Token Refinement for Few-Shot Transformers",
-        authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman",
-        venue: "IJCNN (International Joint Conference on Neural Networks)",
-        doi: "10.1109/IJCNN64981.2025.11227827"
-      },
-      {
-        year: 2025,
-        title: "Deep learning-based image processing framework for efficient surface litter detection in Computer Vision applications",
-        authors: "Ifza Shad, Zuping Zhang, Muhammad Asim, Mohammed Al-Habib, Ahmed A. Abd El-Latif, et al.",
-        venue: "Journal of Radiation Research and Applied Sciences",
-        doi: "10.1016/j.jrras.2025.101534"
-      },
-      {
-        year: 2025,
-        title: "FEGGNN: Feature-Enhanced Gated Graph Neural Network for robust few-shot skin disease classification",
-        authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Raeed Alsabri, et al.",
-        venue: "Computers in Biology and Medicine",
-        doi: "10.1016/j.compbiomed.2025.109902"
-      },
-      {
-        year: 2024,
-        title: "RVAIC: Refined visual attention for improved image captioning",
-        authors: "Majjed Al-Qatf, Ammar Hawbani, Xingfu Wang, Mohammed Al-Habib, Edward Curry",
-        venue: "Journal of Intelligent & Fuzzy Systems",
-        doi: "10.3233/jifs-233004"
-      },
-      {
-        year: 2024,
-        title: "Posture Detection of Heart Disease Using Multi-Head Attention Vision Hybrid (MHAVH) Model",
-        authors: "Hina Naz, Zuping Zhang, Mohammed Al-Habib, Zaid Ali Khan, et al.",
-        venue: "Computers, Materials & Continua",
-        doi: "10.32604/cmc.2024.049186"
-      },
-      {
-        year: 2019,
-        title: "A Novel Integrated Approach for Companion Vehicle Discovery Based on Frequent Itemset Mining on Spark",
-        authors: "Abdulrahman Al-Badwi, Zhe Long, Zuping Zhang, Mohammed Al-Habib, Kamal Al-Sabahi",
-        venue: "Arabian Journal for Science and Engineering",
-        doi: "10.1007/s13369-019-03831-9"
-      },
-      {
-        year: 2019,
-        title: "Cooperative Hierarchical Framework for Group Activity Recognition",
-        authors: "Mohammed Al-Habib, Dongjun Huang, Majjed Al-Qatf, Kamal Al-Sabahi",
-        venue: "ICSCA (Conference)",
-        doi: "10.1145/3316615.3316722"
-      },
-      {
-        year: 2018,
-        title: "Deep Learning Approach Combining Sparse Autoencoder With SVM for Network Intrusion Detection",
-        authors: "Majjed Al-Qatf, Lasheng Yu, Mohammed Al-Habib, Kamal Al-Sabahi",
-        venue: "IEEE Access",
-        doi: "10.1109/ACCESS.2018.2869577"
-      }
-    ];
+   const pubs = [
+  // ===== FIRST-AUTHOR  =====
+  {
+    title: "Semi-supervised Few-shot Learning via Ensemble-based Adaptive Clustering-aware Pseudo-labeling",
+    authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Majjed Alqatf, et al.",
+    venue: "Applied Soft Computing",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 6.6, Q1",
+    link: "https://doi.org/10.1016/j.asoc.2025.114225"
+  },
+  {
+    title: "CAPTR-GTP: Class-Aware Prompting and Token Refinement with Graph Token Propagation for Few-Shot ViTs",
+    authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman",
+    venue: "Neural Networks",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 6.3, Q1",
+    link: "https://doi.org/10.1016/j.neunet.2026.108934"
+  },
+  {
+    title: "GCDPL-Net: Graph-based Co-attention Discriminative Prototype Learning Networks for Few-shot Classification",
+    authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman, Majjed Alqatf, et al.",
+    venue: "International Journal of Machine Learning and Cybernetics",
+    year: 2025,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 3.3, Q1",
+    link: "https://doi.org/10.1007/s13042-025-02730-w"
+  },
+  {
+    title: "BATR-FST: Bi-Level Adaptive Token Refinement for Few-shot Transformers",
+    authors: "Mohammed Al-Habib, Zuping Zhang, Abdulrahman Noman",
+    venue: "IJCNN",
+    year: 2025,
+    type: "Conference",
+    notes: "EI indexed, CCF-C",
+    link: "https://doi.org/10.1109/IJCNN64981.2025.11227827"
+  },
+  {
+    title: "Cooperative Hierarchical Framework for Group Activity Recognition",
+    authors: "Mohammed Al-Habib, Dongjun Huang, Majjed Al-Qatf, Kamal Al-Sabahi",
+    venue: "ICSCA",
+    year: 2019,
+    type: "Conference",
+    notes: "",
+    link: "https://doi.org/10.1145/3316615.3316722"
+  },
 
+  // ===== CO-AUTHORED =====
+  {
+    title: "Cascading Size-Dependent Deep Propagation (CADP): Addressing Over-Smoothing in Graph Few-shot Dermatology Classification",
+    authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, et al.",
+    venue: "Neural Networks",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 6.3, Q1",
+    link: "https://doi.org/10.1016/j.neunet.2025.108154"
+  },
+  {
+    title: "FEGGNN: Feature-Enhanced Gated Graph Neural Network for Robust Few-shot Skin Disease Classification",
+    authors: "Abdulrahman Noman, et al., Mohammed Al-Habib",
+    venue: "Computers in Biology and Medicine",
+    year: 2025,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 6.3, Q1",
+    link: "https://doi.org/10.1016/j.compbiomed.2025.109902"
+  },
+  {
+    title: "GAMFuse: Graph-based Adaptive Multiscale Feature Fusion for Few-shot Skin Lesion Classification",
+    authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, Ahmed Alasri",
+    venue: "Biomedical Signal Processing and Control",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 4.9, Q1",
+    link: "https://doi.org/10.1016/j.bspc.2026.109990"
+  },
+  {
+    title: "SEN-GAT: Synergistic Edge-Node Graph Attention Networks for Few-shot Skin Disease Diagnosis",
+    authors: "Abdulrahman Noman, Zou Beiji, Chengzhang Zhu, Mohammed Al-Habib, et al.",
+    venue: "Digital Signal Processing",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 2.9, Q2",
+    link: "https://doi.org/10.1016/j.dsp.2025.105497"
+  },
+  {
+    title: "AI-Driven Risk Assessment of Lingual Plate Perforation and Mandibular Canal Injury",
+    authors: "Khulood Ali Al-Taezi, et al., Mohammed Al-Habib",
+    venue: "International Journal of Dentistry",
+    year: 2026,
+    type: "Journal",
+    notes: "ESCI, Q2",
+    link: "https://doi.org/10.1155/ijod/5599213"
+  },
+  {
+    title: "LiRA-CLIP: Training-Free Posterior-Predictive Uncertainty for Few-Shot CLIP Classification",
+    authors: "Mustafa Qaid Khamisi, Zuping Zhang, Mohammed Al-Habib, et al.",
+    venue: "Computers, Materials & Continua",
+    year: 2026,
+    type: "Journal",
+    notes: "SCIE (SCI), Q3",
+    link: "https://doi.org/10.32604/cmc.2026.077556"
+  },
+  {
+    title: "Deep Learning-Based Image Processing Framework for Efficient Surface Litter Detection",
+    authors: "Ifza Shad, et al., Mohammed Al-Habib",
+    venue: "Journal of Radiation Research and Applied Sciences",
+    year: 2025,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 1.4, Q3",
+    link: "https://doi.org/10.1016/j.jrras.2025.101534"
+  },
+  {
+    title: "RVAIC: Refined Visual Attention for Improved Image Captioning",
+    authors: "Majjed Al-Qatf, et al., Mohammed Al-Habib",
+    venue: "Journal of Intelligent & Fuzzy Systems",
+    year: 2024,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF 1.7, Q2",
+    link: "https://doi.org/10.3233/JIFS-233004"
+  },
+  {
+    title: "Posture Detection of Heart Disease Using Multi-Head Attention Vision Hybrid Model",
+    authors: "Hina Naz, et al., Mohammed Al-Habib",
+    venue: "Computers, Materials & Continua",
+    year: 2024,
+    type: "Journal",
+    notes: "SCIE (SCI), Q3",
+    link: "https://doi.org/10.32604/cmc.2024.049186"
+  },
+  {
+    title: "Companion Vehicle Discovery Based on Frequent Itemset Mining on Spark",
+    authors: "Abdulrahman Al-Badwi, et al., Mohammed Al-Habib",
+    venue: "Arabian Journal for Science and Engineering",
+    year: 2019,
+    type: "Journal",
+    notes: "SCIE (SCI)",
+    link: "https://doi.org/10.1007/s13369-019-03831-9"
+  },
+  {
+    title: "Deep Learning Approach Combining Sparse Autoencoder With SVM for Network Intrusion Detection",
+    authors: "Majjed Al-Qatf, et al., Mohammed Al-Habib",
+    venue: "IEEE Access",
+    year: 2018,
+    type: "Journal",
+    notes: "SCIE (SCI), JIF ~3.9",
+    link: "https://doi.org/10.1109/ACCESS.2018.2869577"
+  }
+];
     const pubGrid = document.getElementById("pubGrid");
     const empty = document.getElementById("empty");
     const q = document.getElementById("q");
@@ -566,7 +627,7 @@ html[data-theme="dark"] .avatar{
       const doiBtn = p.doi
         ? `<a class="px-3 py-2 rounded-2xl text-sm font-extrabold border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-950/40 hover:-translate-y-1 transition"
               target="_blank" rel="noopener" href="https://doi.org/${p.doi}">DOI</a>`
-        : `<span class="px-3 py-2 rounded-2xl text-sm font-extrabold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400">Accepted</span>`;
+        : `<span class="px-3 py-2 rounded-2xl text-sm font-extrabold border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400">Published</span>`;
 
       return `
         <article class="reveal group p-6 rounded-[28px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-soft dark:shadow-softDark hover:-translate-y-1 transition relative overflow-hidden">
